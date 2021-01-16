@@ -11,6 +11,8 @@
         <module>Models</module>
         <module>SpringContext_JavaConfig</module>
         <module>SpringContext_XMLConfig</module>
+        <module>SpringMVC_JavaConfig</module>
+        <module>SpringMVC_XMLConfig</module>
     </modules>
     <packaging>pom</packaging>
 
