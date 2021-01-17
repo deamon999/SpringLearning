@@ -3,44 +3,24 @@ package com.gmail.deamon999.entities;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Version;
 
 @Entity
 @Table(name = "album")
-public class Album {
+public class Album extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
     @Column
     private String title;
     @Temporal(TemporalType.DATE)
     @Column(name = "RELEASE_DATE")
     private Date releaseDate;
-    @Version
-    @Column(name = "VERSION")
-    private int version;
     @ManyToOne
-    @JoinColumn(name = "SINGER ID")
+    @JoinColumn(name = "SINGER_ID")
     private Singer singer;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -68,11 +48,27 @@ public class Album {
 
     @Override
     public String toString() {
-        return "Album{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", releaseDate=" + releaseDate +
-                ", version=" + version +
-                '}';
+        return "Album - Id: " + id + ", Singer id: " + singer.getId()
+                + ", Title: " + title + ", Release Date: " + releaseDate;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+        Album album = (Album) o;
+        if (title != null ? !title.equals(album.title) : album.title != null)
+            return false;
+        return releaseDate != null ? releaseDate.equals(album.releaseDate) : album.releaseDate == null;
+    }
+
+    @Override public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (releaseDate != null ? releaseDate.hashCode() : 0);
+        return result;
     }
 }

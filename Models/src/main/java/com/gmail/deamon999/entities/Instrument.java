@@ -20,12 +20,12 @@ public class Instrument {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "INSTRUMENT NAME")
+    @Column(name = "INSTRUMENT_NAME")
     private String instrumentName;
     @ManyToMany
-    @JoinTable(name = "singer instrument",
-            joinColumns = @JoinColumn(name = "INSTRUMENT ID"),
-            inverseJoinColumns = @JoinColumn(name = "SINGER ID"))
+    @JoinTable(name = "singer_instrument",
+            joinColumns = @JoinColumn(name = "INSTRUMENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SINGER_ID"))
     private Set<Singer> singers = new HashSet<>();
 
     public Long getId() {
@@ -54,9 +54,6 @@ public class Instrument {
 
     @Override
     public String toString() {
-        return "Instrument{" +
-                "id=" + id +
-                ", instrumentName='" + instrumentName + '\'' +
-                '}';
+        return "Instrument :" + getInstrumentName();
     }
 }

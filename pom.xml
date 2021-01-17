@@ -13,6 +13,7 @@
         <module>SpringContext_XMLConfig</module>
         <module>SpringMVC_JavaConfig</module>
         <module>SpringMVC_XMLConfig</module>
+        <module>Spring_Hibernate_JavaConfig</module>
     </modules>
     <packaging>pom</packaging>
 
